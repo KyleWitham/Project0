@@ -24,11 +24,51 @@
                     <input type="password" name="pass" id="password" placeholder="Password">
                     <input type="submit" value="Sign In">
                 </form>
+                <p>Need to Register?<a href="./register.html"></a></p>
             </div>
         </div>
         <div id="foot" class="footing">
             <footer id="footer">Property Of Kyle Witham &trade;</footer>
         </div>
     </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-analytics.js";
+        import {getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.0.1/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCJibhyzvWeN4v4H-0YYL98PsNPFPSbxj8",
+          authDomain: "project0-9b397.firebaseapp.com",
+          projectId: "project0-9b397",
+          storageBucket: "project0-9b397.appspot.com",
+          messagingSenderId: "1061066883668",
+          appId: "1:1061066883668:web:f44b11a3eadfd9d6fda3c1",
+          measurementId: "G-4GNC7L7RRD"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+      <script>
+        function logIn(pass, email){
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, pass, email)
+            .then((userCredential) => {
+                const user = userCredential.user;
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+        }
+      </script>
+
 </body>
 </html>
