@@ -15,16 +15,14 @@
         <div id="signIn-container" class="signcontain">
             <div id="heading-container" class="headcontain">
                 <img id="logoImg" src="ZLogoclear.jpg" alt="Temp Logo" height="150px" width="150px">
-                <h1 id="textPlace1">Planning Made Easy </h1> 
-                <h2 id="textPlace2">Sign in to Zero</h2>
             </div>
             <div id="login-container" class="logcontain">
                 <form id="login" onsubmit="logIn()">
                     <input type="text" name="email" id="email" placeholder="Email">
                     <input type="password" name="pass" id="password" placeholder="Password">
-                    <input type="submit" value="Sign In">
+                    <input type="text" name="username" id="username" placeholder="Username">
+                    <input type="submit" value="Sign Up">
                 </form>
-                <p id="regLink">Need to Register?<a href="./register.html"> Sign Up </a></p>
             </div>
         </div>
         <div id="foot" class="footing">
@@ -36,7 +34,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-analytics.js";
-        import {getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.0.1/firebase-auth.js";
+        import {getAuth, createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.0.1/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
@@ -57,16 +55,17 @@
         const analytics = getAnalytics(app);
       </script>
       <script>
-        function logIn(pass, email){
+        function signUp(pass, email, username){
             const auth = getAuth();
-            signInWithEmailAndPassword(auth, pass, email)
-            .then((userCredential) => {
-                const user = userCredential.user;
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
+            createUserWithEmailAndPassword(auth, email, pass)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                })
         }
       </script>
 
